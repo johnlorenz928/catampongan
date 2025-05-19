@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    :root {
+      --bar-width: 60px;
+      --bar-height: 8px;
+      --hamburger-gap: 6px;
+      --foreground: black;
+      --background: white;
+      --hamburger-margin: 8px;
+      --animation-timing: 200ms ease-in-out;
+      --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+    }
+
+    .hamburger-menu {
+      --x-width: calc(var(--hamburger-height) * 1.41421356237);
+      display: flex;
+      flex-direction: column;
+      gap: var(--hamburger-gap);
+      width: max-content;
+      position: fixed;
+      top: var(--hamburger-margin);
+      left: var(--hamburger-margin);
+      z-index: 2;
+      cursor: pointer;
+    }
+ 	.hamburger-menu:has(input:checked) {
+	--foreground: white;
+    --background: black;
+	}   
+
+
+    .hamburger-menu input {
+      appearance: none;
+      margin: 0;
+      padding: 0;
+      outline: none;
+      pointer-events: none;
+      width: var(--bar-width);
+      height: var(--bar-height);
+      background-color: var(--foreground);
+      border-radius: 9999px;
+      transform-origin: left center;
+      transition: all var(--animation-timing);
+    }
+
+    .hamburger-menu:before,
+    .hamburger-menu:after {
+      content: "";
+      width: var(--bar-width);
+      height: var(--bar-height);
+      background-color: var(--foreground);
+      transform-origin: left center;
+      border-radius: 9999px;
+      transition: all var(--animation-timing);
+    }
+
+    .hamburger-menu:has(input:checked)::before {
+      rotate: 45deg;
+      width: var(--x-width);
+      translate: 0 calc(var(--bar-height) / -2);
+    }
+
+    .hamburger-menu:has(input:checked)::after {
+      rotate: -45deg;
+      width: var(--x-width);
+      translate: 0 calc(var(--bar-height) / 2);
+    }
+
+    .hamburger-menu input:checked {
+      opacity: 0;
+      width: 0;
+    }
+
+    .sidebar {
+      transition: translate var(--animation-timing);
+      translate: -100%;
+      padding: 1rem;
+      padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 4rem);
+      background-color: var(--foreground);
+      color: var(--background);
+      max-width: 15rem;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .hamburger-menu:has(input:checked) + .sidebar {
+      translate: 0;
+    }
+
+    .sidebar nav div {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .sidebar nav div:hover {
+      background-color: #222;
+    }
+
+    .sidebar nav div a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 2rem;
+      margin-left: 1rem;
+      max-width: 900px;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #ccc;
+    }
+
+    h1, h2 {
+      color: #222;
+    }
+
+  </style>
+</head>
+<body>
+
+  <label class="hamburger-menu">
+    <input type="checkbox" />
+  </label>
+
+  <aside class="sidebar">
+    <nav>
+      <div><a href="#profile">PROFILE</a></div>
+      <div><a href="#education">EDUCATION</a></div>
+      <div><a href="#training">TRAINING/SEMINAR</a></div>
+      <div><a href="#projects">PROJECT</a></div>
+      <div><a href="#contact">CONTACT US</a></div>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="profile">
+      <h1>Profile</h1>
+      <p>Hello! I'm John Lorenz A. Catampongan, a web developer with a love for creating interactive and accessible websites. I specialize in frontend technologies like HTML, CSS, and JavaScript.</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <p><strong> 33F - Computer Engineering</strong> - CITE Technical Institute Inc. (2022–2025)</p>
+    </section>
+
+    <section id="training">
+      <h2>Training / Seminars</h2>
+      <ul>
+        <li>Computer Systems Servicing National Certificate Level II</li>
+        <li>HTML AND CSS</li>
+        <li>Breadboard Circuit</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p><strong>Portfolio Website:</strong> A personal portfolio built with HTML, CSS, and JavaScript to showcase my projects and skills.</p>
+      <p><strong>To-Do List App:</strong> A simple to-do list web app with local storage and filter functionality.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: courtjohnlorenz@gmail.com</p>
+      <p>GitHub: <a href="https://github.com/johnlorenz928" target="_blank">https://github.com/johnlorenz928</a></p>
+    </section>
+  </main>
+
+</body>
+</html>
